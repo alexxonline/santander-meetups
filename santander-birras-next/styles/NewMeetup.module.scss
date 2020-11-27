@@ -1,0 +1,37 @@
+.new {
+  padding: 24px;
+}
+
+.formControl {
+  display: block;
+  margin-bottom: 16px;
+
+  label {
+    display: none;
+  }
+}
+
+.dateControl {
+  display: flex;
+}
+
+.buttonContainer {
+  margin-top: 24px;
+}
+
+.invalid {
+  border-bottom: 2px solid red;
+}
+
+
+@media screen and (min-width: 768px){
+  .formControl {
+    display: flex;
+    max-width: 500px;
+
+    label {
+      width: 100px;
+      display: inline-block;
+    }
+  }
+}

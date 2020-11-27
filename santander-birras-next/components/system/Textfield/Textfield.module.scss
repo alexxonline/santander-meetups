@@ -1,0 +1,9 @@
+.textfield {
+  border: none;
+  border-bottom: 1px solid;
+  width: 100%;
+
+  &:focus {
+    outline: none;
+  }
+}

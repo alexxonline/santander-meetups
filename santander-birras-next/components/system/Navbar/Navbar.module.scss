@@ -1,0 +1,64 @@
+@import '../../../styles/colors.scss';
+
+.navbar {
+  align-items: center;
+  background-color: white;
+  border-bottom: 1px solid $gray-scale-400;
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+}
+
+.logo {
+  font-size: 20px;
+}
+
+.logoFull {
+  display: none;
+  font-size: 20px;
+}
+
+.openMenu {
+  height: 20px;
+  margin-bottom: -4px;
+}
+
+.menuTitle {
+  display: none;
+}
+
+.exit {
+  height: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .logo {
+    font-size: 24px;
+  }
+
+  .logoFull {
+    display: inline;
+    font-size: 28px;
+  }
+
+  .menuTitle {
+    display: inline-block;
+    margin-left: 8px;
+  }
+
+  .exit {
+    cursor: pointer;
+  }
+
+  .openMenuContainer {
+    border: 1px solid $gray-scale-400;
+    border-radius: 30px;
+    padding: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: #ececec;
+    }
+  }
+}

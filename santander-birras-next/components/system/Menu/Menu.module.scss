@@ -1,0 +1,60 @@
+.menu {
+  background-color: white;
+  padding: 24px;
+  position: absolute;
+  transform: translateX(-500px);
+  transition: all 0.5s ease;
+  width: 100%;
+  top: 60px;
+  bottom: 0;
+}
+
+.open {
+  transform: translateX(0);
+}
+
+.closeMenu {
+  display: none;
+}
+
+.menuList {
+  list-style-type: none;
+  margin: 0;
+
+  li {
+    margin-top: 12px;
+    a {
+      font-weight: 300;
+    }
+  }
+}
+
+
+@media screen and (min-width: 768px) {
+  .menu {
+    max-width: 400px;
+    top: 0;
+  }
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  .closeMenu {
+    display: block;
+    cursor: pointer;
+    margin-bottom: 24px;
+
+    img {
+      height: 16px;
+    }
+    span {
+      display: inline-block;
+      margin-left: 8px;
+    }
+  }
+}

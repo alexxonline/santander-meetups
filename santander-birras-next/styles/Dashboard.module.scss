@@ -1,0 +1,40 @@
+.hero {
+  background-color: white;
+}
+
+.heroInner {
+  margin: 0 auto;
+  padding: 24px;
+
+  p {
+    display: none;
+  }
+}
+
+.meetup {
+  padding: 24px;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .heroInner {
+    max-width: 600px;
+    padding: 24px 0;
+
+    p {
+      display: block;
+    }
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .heroInner {
+    max-width: 960px;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .heroInner {
+    max-width: 1280px;
+  }
+}

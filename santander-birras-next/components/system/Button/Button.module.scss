@@ -1,0 +1,23 @@
+@import '../../../styles/colors.scss';
+
+.button {
+  background-color: $brand-500;
+  color: $inverse-brand-500;
+  border: 0;
+  border-radius: 25px;
+  height: 40px;
+  padding: 0 48px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    color: $brand-500;
+    background-color: $inverse-brand-500;
+    border: 1px solid;
+  }
+}

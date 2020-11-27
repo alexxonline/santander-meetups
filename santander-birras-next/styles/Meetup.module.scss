@@ -1,0 +1,23 @@
+@import './colors.scss';
+
+.meetup {
+  padding: 24px;
+}
+
+.buttonContainer {
+  margin-top: 24px;
+}
+
+.adminContainer {
+  border-top: 1px solid $gray-scale-200;
+}
+
+.admin {
+  padding: 24px;
+}
+
+.highlightText {
+  color: $brand-500;
+  font-size: 1.2em;
+  font-weight: bold;
+}
