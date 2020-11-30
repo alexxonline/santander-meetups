@@ -1,11 +1,13 @@
 import styles from "../styles/Home.module.scss";
 import Button from "../components/system/Button";
 import { useRouter } from 'next/router'
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Home() {
+  const { loginWithRedirect } = useAuth0();
   const router = useRouter();
   const login = () => {
-    router.push('/dashboard');
+    loginWithRedirect();
   }
 
   return (

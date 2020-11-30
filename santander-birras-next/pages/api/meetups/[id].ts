@@ -1,6 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import * as AWS from "aws-sdk";
-import { getMeetup } from "../../server/meetups.repository";
+import {
+  getMeetup,
+  listMeetupParticipants,
+} from "../../../server/meetups.repository";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== "GET") {
@@ -12,18 +14,15 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     query: { id },
   } = req;
 
-  return getMeetup(id)
-    .then((data) => {
-      if (data) {
-        res.status(200).json(data);
-      } else {
-        res.status(404).json({ message: "not found" });
-      }
-    })
-    .catch((err) => {
-      if (err) {
-        res.status(500).json({ error: err });
-        return;
-      }
-    });
+  try {
+    const result = await getMeetup(id);
+    if (result) {
+      result.participants = await listMeetupParticipants(id);
+      res.status(200).json(result);
+    } else {
+      res.status(404).json({ message: "not found" });
+    }
+  } catch (error) {
+    res.status(500).json(error);
+  }
 };

@@ -1,5 +1,11 @@
+@import '../styles/colors.scss';
+
 .new {
   padding: 24px;
+}
+
+.content {
+  margin-top: 24px;
 }
 
 .formControl {
@@ -23,14 +29,32 @@
   border-bottom: 2px solid red;
 }
 
+.tick {
+  width: 24px;
+  vertical-align: middle;
+  margin-right: 8px;
+}
 
-@media screen and (min-width: 768px){
+.link {
+  color: $brand-500;
+  padding: 4px;
+  border-radius: 30px;
+}
+
+@media screen and (min-width: 768px) {
+  .content {
+    min-width: 400px;
+    max-width: 570px;
+    margin: 24px auto;
+  }
+
   .formControl {
-    display: flex;
+    display: grid;
+    grid-template-columns: 120px 1fr;
     max-width: 500px;
 
     label {
-      width: 100px;
+      width: 100%;
       display: inline-block;
     }
   }

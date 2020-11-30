@@ -7,6 +7,7 @@ export class CompositeDate {
 
   static isValid(date: CompositeDate) {
     return (
+      date &&
       date.day != "" &&
       date.month != "" &&
       date.year != "" &&

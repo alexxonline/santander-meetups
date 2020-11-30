@@ -21,3 +21,14 @@
     border: 1px solid;
   }
 }
+
+.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+
+  &:hover {
+    background-color: $brand-500;
+    color: $inverse-brand-500;
+    border: none;
+  }
+}

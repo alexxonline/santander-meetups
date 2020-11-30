@@ -1,13 +1,14 @@
 import styles from "./Navbar.module.scss";
 import Menu from '../Menu';
-import { useRouter } from 'next/router'
+import { useAuth0 } from "@auth0/auth0-react";
 import React, { useState } from "react";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const router = useRouter()
+  const { logout } = useAuth0();
+
   const exit = () => {
-    router.push('/');
+    logout({ returnTo: "https://meetups.alexsaez.net"});
   };
 
   const toggleMenu = () => {

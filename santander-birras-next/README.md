@@ -1,39 +1,41 @@
-Afterwork - By Santander Tecnología
-===================================
+Meetups - Ejercicio de entrevista hecho especialmente para Santander Tecnología
+===============================================================================
 
 Para este primer MVP se decidió usar Next ya que podemos usar React, tener unas apis integradas en el proyecto y poder desplegar ambas cosas de manera rápida y a un bajo costo utilizando Vercel (pasar a inglés).
 
+Estas son algunas tecnologías usadas en el proyecto:
+- Next: Framework general del proyecto, front y back serverless
+- React: Es la base de Next, los componentes están escritos en React
+- Node: Las funciones del back serverless están escritas en Node
+- SCSS: Estilos de los componentes con variables para favorecer la reutilización
+- CSS Modules: Para tener clases de CSS scoped al componente o la página que estamos trabajando
+- TypeScript: Como lenguaje fuertemente para capturar errores antes de la ejecución
+- AWS DynamoDB: Como persistencia de datos
+- Axios: Para enviar solicitudes server side 
+- Fetch: Para enviar solicitudes client side (utilizamos uno diferente en el cliente para mantener el bundle liviano)
+- Joi: Para validar datos server side
+- uuid: Para generar identificadores únicos para las meetups.
+- Auth0: Para autenticación segura. Por cuestión de tiempo los tokens no se están validando pero podrian validarse en el futuro
 
-Los tests unitarios son importantes pero no hubo tiempo de hacerlos.
 
+Patrones aplicados
+ - Cache: Se utiliza AWS DynamoDb como caché de las llamadas a OpenWeatherMap para no hacer llamadas 
+ innecesarias y no alcanzar el límite de llamadas demasiado rápido.
+ - Retry: Las llamadas a los servicios de OpenWeatherMap se reintentan 3 veces antes de fallar
+ - Serverless: El backend no requiere de un cluster de kubernetes o de OKD, ya que son funciones simples de facil despliegue.
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+No se utilizó ninguna librería de componentes o framework de CSS con el objeto de mantener la aplicación liviana (lo que hace que sea más facil escalarla) 
+y también para mantener un design system con una identidad propia. La aplicación es completamente responsive.
 
-## Getting Started
+No es PWA, dado que no es un proyecto tan grande no considero sea necesario involucrarse con Service Workers. 
+Next utiliza una tecnología de "static site prerendering" lo que significa que el html de los componentes es pregenerado en tiempo de compilación. 
+Esto hace que el arranque de la aplicación sea muy rápida y en comparación con un Server Site Rendering, el TTFB es mucho menor lo cual es positivo para la 
+performance ya que afecta a uno de los Web Vitals.
 
-First, run the development server:
+Las claves y secretos para acceder a los distintos servicios son seteados por variables de entorno. En el desarrollo 
+local se utiliza la implementación de Next de dotenv.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+Los tests unitarios son importantes pero por una cuestión de tiempo no están. En el caso del ecosistema de React una combinación de Jest y Enzyme suele ser una
+de las opciones más populare.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Las imagenes tienen licencia legal de Envato Elements y los íconos.

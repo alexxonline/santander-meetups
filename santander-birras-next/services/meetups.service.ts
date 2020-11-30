@@ -1,4 +1,5 @@
 import { Meetup } from "../models/meetup.model";
+import { TemperatureAndBeer } from "../models/temperatureAndBeer.model";
 
 const mockListOfMeetups = [
   {
@@ -72,32 +73,72 @@ const mockListOfMeetups = [
   },
 ];
 
-
-export function getNextThreeMeetups(): Array<Meetup> {
+export function getNextThreeMeetupsMock(): Array<Meetup> {
   return mockListOfMeetups;
 }
 
-export function getMeetup(id: string): Meetup {
+export function getMeetupMock(id: string): Meetup {
   return mockListOfMeetups[0];
 }
 
-export function listAllMeetups(): Array<Meetup> {
-  return [...mockListOfMeetups, ...mockListOfMeetups]
+export function listAllMeetupsMock(): Array<Meetup> {
+  return [...mockListOfMeetups, ...mockListOfMeetups];
 }
 
-export async function getNextThreeMeetupsAsync() {
-  const meetups = await listAllMeetupsAsync();
+export async function getNextThreeMeetups(accessToken: string) {
+  const meetups = await listAllMeetups(false, accessToken);
   return meetups.splice(0, 3);
 }
 
-export async function listAllMeetupsAsync(): Promise<Array<Meetup>> {
-  const response = await fetch('/api/meetups');
+export async function listAllMeetups(
+  includeParticipants = false,
+  accessToken: string
+): Promise<Array<Meetup>> {
+  const includeParticipantsQuery = includeParticipants
+    ? "?includeParticipants=true"
+    : "";
+  
+  const response = await fetch(`/api/meetups${includeParticipantsQuery}`, {
+    headers: {
+      "Authorization": `Bearer ${accessToken}`
+    }
+  });
   const data = await response.json();
   return data.Items;
 }
 
-export async function getMeetupAsync(id: string): Promise<Meetup> {
-  const response = await fetch(`/api/meetups/${id}`);
+export async function getMeetup(id: string, accessToken: string): Promise<Meetup> {
+  const response = await fetch(`/api/meetups/${id}`, {
+    headers: {
+      "Authorization": `Bearer ${accessToken}`
+    }
+  });
+  const data = await response.json();
+  return data;
+}
+
+export async function getTempAndBeer(
+  meetupId: string,
+  accessToken: string,
+): Promise<TemperatureAndBeer> {
+  const response = await fetch(`/api/beers/${meetupId}`, {
+    headers: {
+      "Authorization": `Bearer ${accessToken}`
+    }
+  });
+  const data = await response.json();
+  return data;
+}
+
+export async function insertMeetup(meetup, accessToken:string): Promise<{ id: string }> {
+  const response = await fetch(`/api/meetups`, {
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${accessToken}`
+    },
+    body: JSON.stringify(meetup),
+    method: "POST",
+  });
   const data = await response.json();
   return data;
 }

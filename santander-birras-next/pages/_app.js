@@ -1,8 +1,17 @@
 import '../styles/globals.scss'
 import Head from 'next/head';
+import { Auth0Provider } from "@auth0/auth0-react";
+
 function MyApp({ Component, pageProps }) {
 
   return (
+    <Auth0Provider
+    domain="alexsaez.us.auth0.com"
+    clientId="NG9FyyrnO7Mn0GycOHw5TULiw2VRmA5z"
+    redirectUri="https://meetups.alexsaez.net/dashboard"
+    audience="https://alex-meetups.vercel.app/api"
+    scope="read:all write:all"
+  >
     <div>
       <Head>
         <title>Meetups</title>
@@ -12,6 +21,7 @@ function MyApp({ Component, pageProps }) {
       </Head> 
       <Component {...pageProps} />
     </div>
+    </Auth0Provider>
   )
 }
 
