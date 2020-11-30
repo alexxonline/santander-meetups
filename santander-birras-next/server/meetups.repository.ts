@@ -1,5 +1,9 @@
 import * as AWS from "aws-sdk";
-import Id from "../pages/api/beers/[id]";
+AWS.config.update({
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID_2,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY_2,
+  region: process.env.AWS_REGION_2});
+
 
 export function getMeetup(id) {
   const params = {
